@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="AuthTest1" />
+        <module name="TestAuth" />
+        <module name="TestAuth871" />
+        <module name="TestAuth8711" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="AuthTest1" target="1.8" />
+      <module name="TestAuth871" target="1.8" />
+      <module name="TestAuth8711" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
