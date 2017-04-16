@@ -29,7 +29,7 @@ public class TestAuth {
 
             final Scanner in = new Scanner(System.in, "UTF-8");
 
-            System.out.println("=== " + "'s OAuth Workflow ===");
+            System.out.println("=== OAuth Workflow ===");
             System.out.println();
 
             // Obtain the Authorization URL
@@ -38,18 +38,18 @@ public class TestAuth {
             System.out.println("Got the Authorization URL!");
             System.out.println("Now go and authorize ScribeJava here:");
             System.out.println(authUrl);
-            System.out.println("And paste the authorization code here");
+            System.out.println("And paste the authorization auth_verifier here");
             System.out.print(">>");
-            final String code = in.nextLine();
+            final String auth_verifier = in.nextLine();
             System.out.println();
 
-            System.out.print(">>");
-            final String value = in.nextLine();
+            //System.out.print(">>");
+            //final String value = in.nextLine();
 
             // Trade the Request Token and Verfier for the Access Token
             System.out.println("Trading the Request Token for an Access Token...");
 
-            final OAuth1AccessToken accessToken = service.getAccessToken(requestToken, code);
+            final OAuth1AccessToken accessToken = service.getAccessToken(requestToken, auth_verifier);
 
             System.out.println("Got the Access Token!");
             System.out.println("(if your curious it looks like this: " + accessToken
