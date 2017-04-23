@@ -3,7 +3,7 @@ package JSONrequests;
 /**
  * Created by nirav on 23/4/17.
  */
-public class Hello {
+public class MessageResponse {
 
     String message;
 

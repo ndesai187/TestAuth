@@ -35,6 +35,9 @@ public class TestAuth {
             // Obtain the Authorization URL
             System.out.println("Fetching the Authorization URL...");
             String authUrl = service.getAuthorizationUrl(requestToken);
+            System.out.println("(if your curious requestToken looks like this: " +
+                    "'rawResponse'='" + requestToken.getRawResponse() + "')");
+
             System.out.println("Got the Authorization URL!");
             System.out.println("Now go and authorize ScribeJava here:");
             System.out.println(authUrl);
