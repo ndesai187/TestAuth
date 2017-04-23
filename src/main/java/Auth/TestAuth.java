@@ -51,6 +51,7 @@ public class TestAuth {
 
             final OAuth1AccessToken accessToken = service.getAccessToken(requestToken, auth_verifier);
 
+
             System.out.println("Got the Access Token!");
             System.out.println("(if your curious it looks like this: " + accessToken
                     + ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
