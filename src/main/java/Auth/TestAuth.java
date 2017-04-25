@@ -70,6 +70,17 @@ public class TestAuth {
             System.out.println(response.getCode());
             System.out.println(response.getBody());
 
+
+            System.out.println("Now we're going to access a protected resource...");
+            final OAuthRequest request1 = new OAuthRequest(Verb.GET, "https://apisandbox.openbankproject.com/obp/v2.0.0/users/brucebat1/entitlements");
+            service.signRequest(accessToken, request1);
+            final Response response1 = service.execute(request1);
+            System.out.println("Got it! Lets see what we found...");
+            System.out.println();
+            System.out.println(response1.getCode());
+            System.out.println(response1.getBody());
+
+
             System.out.println();
             System.out.println("Thats it man! Go and build something awesome with ScribeJava! :)");
 

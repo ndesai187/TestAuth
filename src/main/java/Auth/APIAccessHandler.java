@@ -15,9 +15,9 @@ public class APIAccessHandler {
 
 
     final OAuth10aService service = new ServiceBuilder()
-            .apiKey("a0ogsz4yumgzb2ddj2cmyxrrbr4h3zix12r34nus")
-            .apiSecret("ydzlhai3svpggjvlbkujieu0gn4kpumjd0jpb3xn")
-            .callback("http://testrecing.pagekite.me/AuthTest1/callBack")
+            .apiKey("qc2iuygsmrqed2mi2bghqjupibvmq0vvhtvqzq44")
+            .apiSecret("astbalgsoft1irrfnqf1pmntutlbbfq5qb0tqybw")
+            .callback("http://testrecing.pagekite.me/AuthTest1/callBack/")
             .build(OBPApi.instance());
 
     public String getLoginPage (){
