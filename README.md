@@ -20,4 +20,4 @@
   * LoginURL : Authorization URL (with Request Token)
 * Sample :
 
-{"status":"Success","loginURL":"https://apisandbox.openbankproject.com/oauth/authorize?oauth_token=<Request Token Here>"}
+{"status":"Success","loginURL":"https://apisandbox.openbankproject.com/oauth/authorize?oauth_token=`<_Request Token Here_>`"}
