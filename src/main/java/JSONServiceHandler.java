@@ -1,18 +1,8 @@
 import Auth.APIAccessHandler;
-import Auth.OBPApi;
-import JSONrequests.AuthRequestResponse;
-import JSONrequests.MessageResponse;
+import JSONResponse.AuthRequestResponse;
+import JSONResponse.MessageResponse;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.net.URI;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by nirav on 23/4/17.
@@ -52,7 +42,7 @@ public class JSONServiceHandler {
 
         loginPage.setLoginURL(session.getLoginPage());
         if (session.getLoginPage().equals(null)){
-            loginPage.setStatus("Failed");
+            loginPage.setStatus("Failure");
         } else {
             loginPage.setStatus("Success");
         }
@@ -62,10 +52,27 @@ public class JSONServiceHandler {
     @GET
     @Path("/callBack")
     @Produces("application/json")
-    public MessageResponse welcomePage(){
+    public MessageResponse welcomePage(
+            @QueryParam("oauth_token") String auth_token,
+            @QueryParam("oauth_verifier") String auth_verifier){
+
+        APIAccessHandler session = new APIAccessHandler();
+        session.getAccessToken(auth_token, auth_verifier);
+
         MessageResponse welcomeText = new MessageResponse();
-        welcomeText.setMessage("you have successfully logged on! but I don't have anything for you now :)");
+        welcomeText.setMessage("you have successfully logged on! but I don't have anything for you now :)" +
+                session.getAccessToken(auth_token, auth_verifier));
 
         return welcomeText;
+    }
+
+    @GET
+    @Path("/userInfo")
+    @Produces("application/json")
+    public void getUserDetails(
+            @QueryParam("user") String username){
+
+
+
     }
 }

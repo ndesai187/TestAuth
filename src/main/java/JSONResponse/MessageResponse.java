@@ -1,4 +1,4 @@
-package JSONrequests;
+package JSONResponse;
 
 /**
  * Created by nirav on 23/4/17.

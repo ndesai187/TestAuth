@@ -14,6 +14,7 @@
     </servlet-mapping>
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+        <listener-class>MyAppServletContextListener</listener-class>
     </listener>
     <context-param>
         <param-name>resteasy.resources</param-name>
