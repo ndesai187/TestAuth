@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 
 @Path("/")
 public class JSONServiceHandler {
+    APIAccessHandler session = new APIAccessHandler();
 
     @GET
     @Path("/welcome")
@@ -27,7 +28,7 @@ public class JSONServiceHandler {
     public MessageResponse sayHelloJSON() {
 
         MessageResponse hello = new MessageResponse();
-        hello.setMessage("Say hello to everyone");
+        hello.setMessage("Hello, I am online!");
 
         return hello;
 
@@ -38,10 +39,9 @@ public class JSONServiceHandler {
     @Produces("application/json")
     public AuthRequestResponse goToLoginPage(){
         AuthRequestResponse loginPage = new AuthRequestResponse();
-        APIAccessHandler session = new APIAccessHandler();
 
         loginPage.setLoginURL(session.getLoginPage());
-        if (session.getLoginPage().equals(null)){
+        if (loginPage.getLoginURL().equals(null)){
             loginPage.setStatus("Failure");
         } else {
             loginPage.setStatus("Success");
@@ -56,12 +56,10 @@ public class JSONServiceHandler {
             @QueryParam("oauth_token") String auth_token,
             @QueryParam("oauth_verifier") String auth_verifier){
 
-        APIAccessHandler session = new APIAccessHandler();
-        session.getAccessToken(auth_token, auth_verifier);
+        String status = session.fetchAccessToken(auth_token, auth_verifier);
 
         MessageResponse welcomeText = new MessageResponse();
-        welcomeText.setMessage("you have successfully logged on! but I don't have anything for you now :)" +
-                session.getAccessToken(auth_token, auth_verifier));
+        welcomeText.setMessage("you have successfully logged on! but I don't have anything for you now :)" + status);
 
         return welcomeText;
     }

@@ -20,6 +20,8 @@ public class MyAppServletContextListener
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        UserAuthUtil.shutdownCache();
+
         System.out.println("ServletContextListener destroyed");
     }
 }

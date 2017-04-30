@@ -1,5 +1,4 @@
-package Auth;
-
+import Auth.OBPApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth10aService;
