@@ -3,10 +3,12 @@ package Auth;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
 
+import java.io.Serializable;
+
 /**
  * Created by nirav on 29/4/17.
  */
-public class UserAuthData {
+public class UserAuthData implements Serializable{
     String username;
     OAuth1RequestToken oauth_req_Token;
     OAuth1AccessToken oauth_acc_Secret;
@@ -14,10 +16,11 @@ public class UserAuthData {
     public String getUsername() {
         return username;
     }
-
-    public OAuth1RequestToken getOauth_req_Token() {
-        return oauth_req_Token;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public OAuth1RequestToken getOauth_req_Token() { return oauth_req_Token; }
 
     public void setOauth_req_Token(OAuth1RequestToken oauth_req_Token) {
         this.oauth_req_Token = oauth_req_Token;
@@ -31,7 +34,4 @@ public class UserAuthData {
         this.oauth_acc_Secret = oauth_acc_Secret;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

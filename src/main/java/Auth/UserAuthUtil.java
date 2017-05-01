@@ -20,32 +20,56 @@ public final class UserAuthUtil {
         System.out.println("Added : " + cm.getCache(cachename));
     }
 
-    public static void cacheReqToken(OAuth1RequestToken reqToken){
+    public static void writeCacheReqToken(OAuth1RequestToken reqToken){
         cm.getCache("req_token").put(new Element(reqToken.getToken(), reqToken));
     }
 
-    public static boolean checkReqKey(String reqKey){
+    public static boolean checkCacheReqKey(String reqKey){
         return cm.getCache("req_token").isKeyInCache(reqKey);
     }
 
-    public static OAuth1RequestToken getReqToken(String reqKey){
+    public static OAuth1RequestToken readCacheReqToken(String reqKey){
         return (OAuth1RequestToken) cm.getCache("req_token").get(reqKey).getObjectValue();
     }
 
-    public static void cacheAccToken(OAuth1RequestToken reqToken, OAuth1AccessToken accToken){
-
-
-        //cm.getCache("acc_token").put(new Element(username, UserAuthData1));
+    public static void writeCacheAccToken(String username, OAuth1RequestToken reqToken, OAuth1AccessToken accToken){
+        if(checkCacheAccToken(username)){
+            System.out.println("Updating existing access token in cache...");
+            boolean removeStatus = cm.getCache("acc_token").remove(username);
+        } else {
+           System.out.println("Adding new access token to cache...");
+        }
+        UserAuthData userDataCache = new UserAuthData();
+        userDataCache.setUsername(username);
+        userDataCache.setOauth_req_Token(reqToken);
+        userDataCache.setOauth_acc_Secret(accToken);
+        cm.getCache("acc_token").put(new Element(username, userDataCache));
         //if(cache_req_token.isKeyInCache())
-
     }
 
-    public static void shutdownCache(){
+    public static boolean checkCacheAccToken(String username){
+        return cm.getCache("acc_token").isKeyInCache(username);
+    }
+
+    public static OAuth1AccessToken readCacheAccToken(String username){
+        UserAuthData userDataCache = new UserAuthData();
+        if(checkCacheAccToken(username)){
+            userDataCache = (UserAuthData) cm.getCache("acc_token").get(username).getObjectValue();
+            return userDataCache.getOauth_acc_Secret();
+        } else{
+            return null;
+        }
+    }
+
+    public static void flushOutCache(){
         cm.shutdown();
     }
 
-    public static List printCache(String cachename){
-        return cm.getCache(cachename).getKeys();
+    public static void printCachebyName(String cachename){
+
+        System.out.println(cm.getCache(cachename).getKeys());
+        System.out.println(cm.getCache(cachename).getStoreMBean());
+
     }
 
 }

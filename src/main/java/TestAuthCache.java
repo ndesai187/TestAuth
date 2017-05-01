@@ -3,7 +3,6 @@ import Auth.UserAuthUtil;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuth10aService;
-import net.sf.ehcache.Cache;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -47,7 +46,7 @@ public class TestAuthCache {
                 // Obtain the Authorization URL
                 System.out.println("Fetching the Authorization URL...");
                 authUrl = service.getAuthorizationUrl(requestToken);
-                UserAuthUtil.cacheReqToken(requestToken);
+                UserAuthUtil.writeCacheReqToken(requestToken);
                 System.out.println("(if your curious requestToken looks like this: " +
                         "'rawResponse'='" + requestToken.getRawResponse() + "')");
                 System.out.println("(if your curious requestToken looks like this: " +
@@ -68,12 +67,12 @@ public class TestAuthCache {
                 System.out.println();
 
                 // PRint Cache
-                System.out.println(UserAuthUtil.printCache("req_token"));
+                UserAuthUtil.printCachebyName("req_token");
 
                 // Get access Token
                 System.out.println("Trading the Request Token for an Access Token...");
-                System.out.println(UserAuthUtil.getReqToken(req_token).getRawResponse());
-                accessToken = service.getAccessToken(UserAuthUtil.getReqToken(req_token), auth_verifier);
+                System.out.println(UserAuthUtil.readCacheReqToken(req_token).getRawResponse());
+                accessToken = service.getAccessToken(UserAuthUtil.readCacheReqToken(req_token), auth_verifier);
                 System.out.println("Got the Access Token!");
                 System.out.println("(if your curious it looks like this: " + accessToken
                         + ", 'rawResponse'='" + accessToken.getRawResponse() + "')");
@@ -101,7 +100,7 @@ public class TestAuthCache {
             System.out.println(response1.getBody());
 
 
-            UserAuthUtil.shutdownCache();
+            UserAuthUtil.flushOutCache();
             System.out.println();
             System.out.println("Thats it man! Go and build something awesome with ScribeJava! :)");
 

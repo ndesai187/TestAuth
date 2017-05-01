@@ -24,4 +24,12 @@ public class AuthRequestResponse {
     public void setLoginURL(String loginURL) {
         this.loginURL = loginURL;
     }
+
+    @Override
+    public String toString() {
+        return "AuthRequestResponse{" +
+                "status='" + status + '\'' +
+                ", loginURL='" + loginURL + '\'' +
+                '}';
+    }
 }

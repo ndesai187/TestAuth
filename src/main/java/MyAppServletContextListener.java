@@ -12,15 +12,15 @@ public class MyAppServletContextListener
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        UserAuthUtil.addStartupCache("req_token");
-        UserAuthUtil.addStartupCache("acc_token");
+        //UserAuthUtil.addStartupCache("req_token");
+        //UserAuthUtil.addStartupCache("acc_token");
 
         System.out.println("ServletContextListener started");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        UserAuthUtil.shutdownCache();
+        UserAuthUtil.flushOutCache();
 
         System.out.println("ServletContextListener destroyed");
     }
